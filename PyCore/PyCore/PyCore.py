@@ -85,7 +85,7 @@ if __name__=="__main__":
 
 class SDlotto:
     #a Lottery number picker that socially distances its values.
-    #Constants
+    #Constants for ball range
     LOW=1
     HIGH_PB=69
     HIGH_MEGA=70
