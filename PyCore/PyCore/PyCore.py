@@ -66,31 +66,74 @@ def main():
     CorF=0
     while(True):
         choice = getChoice()
-        n=getInput()
+        
 
         if(choice==1):
+            n=getInput()
             isPrime(n)
         elif(choice==2):
+            n=getInput()
             k=isTemp(n, 1)
             print("Temperature in chosen scale is ", k)
         elif(choice==4):
+            n=getInput()
             k=isTemp(n,2)
             print("Temperature in chosen scale is ", k)
         else:
-            print("error input")
-if __name__=="__main__":
-    main()
+            print("error input: ")
+            lottoPrint()
+            choose= random.randint(1, 69)
+            addToChosen(choose)
+            addToDistance(choose)
+            print("picked numbers ", Chosen)
+            for i in range (4):
+                checkSocialDistance()
+                print("picked numbers ", Chosen)
+            print("Powerball", random.randint(1,26))
 
 
 
-class SDlotto:
+
     #a Lottery number picker that socially distances its values.
     #Constants for ball range
-    LOW=1
-    HIGH_PB=69
-    HIGH_MEGA=70
-    PB_REDBALL=26
-    MEG_YELLOWBALL=25
+    
+Chosen = []
+Distance = []
+
+def lottoPrint():
+    print("lottery number chooser")
+def addToChosen(n):
+    Chosen.append(n)
+
+def addToDistance(n):
+    Distance.append(n-7)
+    Distance.append(n+6)
+
+def checkSocialDistance():
+    isNotDone=True
+    while (isNotDone==True):
+        choose= random.randint(1,69)
+        print("random int", choose)
+        print("list size", len(Distance))
+        print("list", Distance)
+        i=0
+        isInLoop=True
+        while(isInLoop):
+            if ((Distance[i]<=choose) and (choose<=Distance[i+1])):
+                isInLoop=False
+            elif(i==(len(Distance)-2)):
+                addToChosen(choose)
+                addToDistance(choose)
+                isNotDone=False
+                isInLoop=False
+            else:
+                i+=2
+
+
+    return
+        
+    #def listload(n):
+
     #need to track selections and valid ranges....  Perhaps a list?
     #OK solution is a list with boundaries for each pick.  
     #The only reqirement is that the odd number index be the low end of exclusion and the even number index be high.
@@ -100,3 +143,5 @@ class SDlotto:
     #whiteMeg = random.randint(LOW,HIGH_MEGA)
     #powBall = random.randint(LOW,PB_REDBALL)
     #megBall = random.randint(LOW,MEG_YELLOWBALL)
+if __name__=="__main__":
+    main()
